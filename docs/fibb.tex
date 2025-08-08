@@ -1,0 +1,137 @@
+\documentclass{article}
+
+
+\usepackage[english]{babel}
+\usepackage{listings}
+\usepackage[letterpaper, top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bbold}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+
+%common set symbols 
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\nullset}{\varnothing}
+\newcommand{\powerset}[1]{\mathcal{P} ({#1})}
+\newcommand{\ol}[1]{\overline{#1}}
+
+\newcommand{\divides}{\mid}
+\newcommand{\notdivides}{\nmid}
+
+\newcommand{\st}{\text{ such that }}
+\newcommand{\pmi}{\text{ principle of mathematical induction }}
+
+\newcommand{\nitem}[1] % sets enumerate to a specific number {arg1}
+{
+	\setcounter{enumi}{#1}
+	\addtocounter{enumi}{-1}
+	\item
+}
+\usepackage{multicol}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{ }
+
+\begin{document}
+
+	\maketitle
+    \section*{Definitions}
+    
+    Let $f_n(x) = \sum_{i=0}^{n}x^i$.\\
+    Let $G_n$ be the set of all $g(x)$ such that $g(x)= \sum_{i=1}^{n} a_i x^n$
+        and $\forall a_i$ if $a_i = 0$ then $a_{i+1} \neq 0 $.
+    Let $F(n) =$ the nth Fibonacci number.\\
+    \section*{Proofs}
+    \begin{theorem}
+        let $g(x) = \sum_{i=0}^{n} a_i x^i$ with $a_n = a_0 = 1$  
+        if $(x+1) * g(x) = 2^{n+1} -1$ 
+        then $g(x)$ does not contain two consecutive terms with coefficient zero  
+    
+        \begin{proof}
+            Assume for the sake of contradiction that there exists i 
+            such that $0<j<n$,  $a_{j-1} = a_{j} = 0$ and $(x+1)*g(x) =f_{n+1}(x)$.
+            Consider the following:
+            \begin{align*}
+                (x+1)*g(x)  &= x*g(x)+ 1*g(x)\\
+                            &= x*\sum_{i=0}^{n} a_i x^i+ 1*\sum_{i=0}^{n} a_i x^i 
+                                    &\text{(substituting in g(x))}\\
+                            &= \sum_{i=0}^{n} a_i x^{i+1}+ \sum_{i=0}^{n} a_i x^i
+                                    &\text{(multiplying by x in summation)}\\
+                            &= a_nx^{n+1}+\sum_{i=0}^{n-1} a_i x^{i+1}+ \sum_{i=1}^{n} a_i x^i+ a_0
+                                    &\text{(pulling 0th and (n+1)th terms out of the summation)}\\
+                            &= a_nx^{n+1}+\sum_{i=1}^{n} a_{i-1} x^{i}+ \sum_{i=1}^{n} a_i x^i+ a_0
+                                    &\text{(reindexing the first sum $i \leftarrow i+1$)}\\
+                            &=a_nx^{n+1}+\sum_{i=1}^{n} (a_{i-1} + a_i) x^i+ a_0
+                                    &\text{(combining summations)}\\
+            \end{align*}
+            by the assumption there exist j such that $a_{j-1} + a_{j} = 0$ 
+            contradicting the assumption that $(x+1)*g(x) =f_{n+1}(x)$ because the jth term of $(x+1)*g(x)$'s coefficient  is 0  
+        \end{proof}
+    \end{theorem}
+
+    
+    
+
+    
+    \begin{theorem}
+        $|G_n|= F(n+2)$ 
+        \begin{proof}
+            The proof will be by strong induction.
+            \subsubsection*{n = 1}
+                \begin{enumerate}
+                    \item $g(x) = 1x$
+                    \item $g(x) = 0x$
+                \end{enumerate}
+            \subsubsection*{n = 2}
+                \begin{enumerate}
+                    \item $g(x) =  1x^2 + x $
+                    \item $g(x) =  0x^2 + x $
+                    \item $g(x) = 1x^2 + 0x$
+                \end{enumerate}
+            The base case holds. 
+        \subsubsection*{Induction hypothesis:}
+                Assume that $|G_j| = F(j+2)$ for all $j \in \{1,2, \cdots, k\} $ for some k.
+        \section*{Inductive step:}
+                consider a $g(x) \in G_{k+1}$.
+                \begin{enumerate}[label= \textbf{Case \arabic*.}]
+                    \item $a_{k+1}=1.$ In which case the rest of the polynomial can be any polynomial in $G_k$
+                    \item  $a_{k+1}=0.$ which implies the $a_k=1$. In which case the rest of the polynomial can be any polynomial in $G_{k-1}$.
+                \end{enumerate}
+                Since every polynomial is in $G_{k+1}$ one of these cases $|G_{k+1}| = |G_{k}| + |G_{k-1}| = F(k+2) + F(k+1)$.
+                And by applying the Induction hypothesis $|G_k| = F(k+2) + F(k+1)= F(k+3)$.
+            Therefore by the Principle of Mathematical Induction $|G_n| = F(n+2)$
+
+        \end{proof}
+        
+    \end{theorem}
+    
+    \begin{theorem}
+        let $g(x)\in G_{n-1}$. $ (x+1)(x^n +g(x) + 1) = f_{n+1}(x)$
+        \begin{proof}
+            let $g(x) = \sum_{i=0}^{n-1} a_i x^i$. such that if $a_i = 0$ then $a_{i+1} \neq 0 $
+            consider the following
+            \begin{align*}
+                (x+1)(x^n +g(x) + 1)
+                    &=(x+1)x^n +(x+1)g(x) + (x+1)\\
+                    &= x^{n+1} + x^n +x(g(x))+ g(x)+ x+1\\
+                    &= x^{n+1} + x^n +\sum_{i=1}^{n-1} a_i x^{i+1}+ \sum_{i=1}^{n-1} a_i x^i+ x+1 \\
+                    &= x^{n+1} + x^n +\sum_{i=2}^{n} a_{i-1} x^{i}+ \sum_{i=1}^{n-1} a_i x^i+ x+1 &\text{(reindexing 1st sum $i\rightarrow i+1$)}\\
+                    &= x^{n+1} + x^n +a_{n-1}x^n +\sum_{i=2}^{n-1} a_{i-1} x^{i} + \sum_{i=2}^{n-1} a_i x^i+ a_i x+ x+1 &\text{(matching sum indices)}\\
+                    &= x^{n+1} + x^n + \sum_{i=2}^{n-1} (a_{i-1}+a_i) x^i+ x+1 & \text{(combining sums and simplifying)}\\
+                    &= x^{n+1} + x^n + \sum_{i=2}^{n-1}  x^i+ x+1 & \text{(Since $(a_{i-1}+a_i)= 1)$}\\
+                    &= f_{n+1}(x) & \text{(by definition of $f_{n+1}(x)$) } 
+            \end{align*}
+            Therefore $(x+1)(x^n +g(x) + 1) = f_{n+1}(x)$.
+        \end{proof}
+    \end{theorem}
+\end{document}

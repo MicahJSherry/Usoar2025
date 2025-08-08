@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[letterpaper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bbold}
+\usepackage{caption}
+\title{factorization }
+\author{Micah sherry}
+\date{July 2025}
+
+\begin{document}
+\section*{number of factorizations for elements of the form $2^n-1$}
+
+\begin{center} 
+    \begin{tabular}{|r|r|r|}
+        \hline
+        $n$ & $2^n$ & \# factorizations \\ \hline
+        1 & 1 & 1 \\ \hline
+        2 & 3 & 1 \\ \hline 
+        3 & 7 & 1 \\ \hline 
+        4 & 15 & 2 \\ \hline 
+        5 & 31 & 4 \\ \hline 
+        6 & 63 & 8 \\ \hline 
+        7 & 127 & 16 \\ \hline 
+        8 & 255 & 37 \\ \hline 
+        9 & 511 & 81 \\ \hline 
+        10 & 1023 & 183 \\ \hline 
+        11 & 2047 & 424 \\ \hline 
+        12 & 4095 & 986 \\ \hline 
+        13 & 8191 & 2288 \\ \hline 
+        14 & 16383 & 5316 \\ \hline 
+    \end{tabular}
+
+\end{center}
+
+\section*{number of factorization by number of irreducible elements}
+\begin{center} 
+    \begin{tabular}{|r||r|r|r|r|r|r|r|r|} 
+        \hline
+        $2^n-1$ & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  \\ \hline\hline
+            1   & 1  & 0  & 0  & 0  & 0  & 0  & 0  & 0  \\ \hline
+            3   & 1  & 0  & 0  &   & 0  & 0  & 0  & 0  \\ \hline
+            7   & 0  & 1  & 0  & 0  & 0  & 0  & 0  & 0  \\ \hline
+            15  & 0  & 1  & 1  & 0  & 0  & 0  & 0  & 0  \\ \hline
+            31  & 0  & 2  & 1  & 1  & 0  & 0  & 0  & 0  \\ \hline
+            63  & 0  & 2  & 4  & 1  & 1  & 0  & 0  & 0  \\ \hline
+            127 & 0  & 3  & 7  & 4  & 1  & 1  & 0  & 0  \\ \hline
+            255 & 0  & 6  & 16 & 9  & 4  & 1  & 1  & 0  \\ \hline
+            511 & 0  & 11 & 33 & 22 & 9  & 4  & 1  & 1  \\ \hline
+        
+    \end{tabular}
+\end{center}
+
+\end{document}
