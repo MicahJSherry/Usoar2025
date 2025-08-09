@@ -109,22 +109,38 @@ def calc_ratios(data,offset_dict=None):
         prev = curr         
     return ratios
 
-def write_img(data, file="factorization.jpg"):
+def factorization_img(data, file="factorization.jpg"):
     import matplotlib.pyplot as plt
+    plt.rcParams['text.usetex'] = True
 
     keys = sorted(data.keys())
     n = [n+1 for n in range(len(keys))]
     values = [len(data[k]) if isinstance(data[k], list) else data[k] for k in keys]
 
     plt.figure(figsize=(10, 6))
-    plt.plot(n, values, marker='o')
+    plt.plot(n, values, marker='o',)
+    plt.xticks(n)
     plt.xlabel('n')
-    plt.ylabel('Number of Factorizations of f_n(x)')
-    plt.title('Factorizations')
+    plt.ylabel('Number of Factorizations')
+    plt.title('Unique Factorizations of $f_n(x)$')
     plt.grid(True)
     plt.savefig(file)
     plt.close()
 
+def ratio_img(values, file="ratio.jpg"):
+    import matplotlib.pyplot as plt
+    plt.rcParams['text.usetex'] = True
+    n = [i+2 for i in range(len(values))]
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(n, values, marker='o',)
+    plt.xticks(n)
+    plt.xlabel('n')
+    plt.ylabel('Ratio')
+    plt.title('Ratio of the Number of Factorizations of $f_n(x)$')
+    plt.grid(True)
+    plt.savefig(file)
+    plt.close()
 
 
 if __name__ == "__main__":
@@ -133,6 +149,7 @@ if __name__ == "__main__":
             
     data = int_keys(data)
     data = get_pow_2(data)
-    write_img(data)
-
+    #factorization_img(data)
+    ratio_img(calc_ratios(data)[1:])
+    
 
