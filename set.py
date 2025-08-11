@@ -72,6 +72,7 @@ class memoized_factors():
         self.memo.append((S, f))
         return f
     def populate_memo(self, S ):
+        print("S:", S)
         if self.index_memo(S)!=-1:
             return
         factors = self.append(S)  
@@ -87,7 +88,10 @@ class memoized_factors():
 
 memo = memoized_factors()    
 
-F = {i for i in range(14)}
+F = {i for i in range(16)}
+import time 
+start= time.time()
+print(start)
 memo.populate_memo(F)
 
 pprint(memo.memo)
@@ -139,3 +143,6 @@ file_path_json = f'factors_of_{set_to_int(F)}.json'
 with open(file_path_json, 'w') as json_file:
     json.dump(reduced, json_file, indent=4)
 
+end = time.time()
+print(end)
+print(start - end)

@@ -150,6 +150,6 @@ if __name__ == "__main__":
     data = int_keys(data)
     data = get_pow_2(data)
     #factorization_img(data)
-    ratio_img(calc_ratios(data)[1:])
-    
+    #ratio_img(calc_ratios(data)[1:])
+    print(laTex_list(data))    
 
