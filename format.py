@@ -151,5 +151,5 @@ if __name__ == "__main__":
     data = get_pow_2(data)
     #factorization_img(data)
     #ratio_img(calc_ratios(data)[1:])
-    print(laTex_list(data))    
-
+    #print(laTex_list(data))    
+    print(fact_len_count(data))

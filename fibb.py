@@ -1,12 +1,13 @@
 from boolpoly import boolpoly
 
+k = 3
+xp1 = boolpoly(2**k+1)
 
-xp1 = boolpoly(3)
+dict_f_n = {2**n-1: 0 for n in range(1,15)}
 
-for n in range(3,14):
-    count = 0
-    for g_x in range(2**(n-1), 2**(n)):
-        if  (xp1*boolpoly(g_x)).poly== 2**(n+1)-1:
-            count +=1 
-
-    print(n,boolpoly(2**(n)-1), count)
+for i in range(2**16):
+    
+    p = (xp1*boolpoly(i)).poly
+    if p in dict_f_n.keys():
+        dict_f_n[p] += 1
+print([dict_f_n[p]for p in dict_f_n.keys()])    
