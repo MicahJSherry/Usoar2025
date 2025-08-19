@@ -11,7 +11,7 @@
 \usepackage{setspace}
 \usepackage{enumitem}
 \usepackage{float}
-
+\usepackage{apacite}
 % Common set symbols
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
@@ -46,6 +46,7 @@
     Dr. Francisco Alarcon\\
     \texttt{falarcon@iup.edu}
 }
+
 \begin{document}
 
     \maketitle
@@ -67,7 +68,7 @@
         We define a specific polynomial $f_n(x)$ as the sum of powers of $x$ from $0$ to $n$, which can be written as 
             $f_n(x) = \sum_{i=0}^n x^i = x^n + x^{n-1} + \dots + x + 1 \in \B[x]$.
         Furthermore, we introduce an isomorphism $\theta(f(x))$ that maps polynomials from $\mathbb{B}[x]$ to Numbral arithmetic
-        (described in the paper On the Sequence A079500 and Its Combinatorial Interpretations'),
+        (described in the paper 'On the Sequence A079500 and Its Combinatorial Interpretations'),
         with $\theta^{-1}(n)$ being its inverse. Notably, the isomorphism $\theta(f(x))$ is equivalent to evaluating the polynomial at $x=2$,
         expressed as $\theta(f(x)) = [f(2)]$, where $[n]$ represents the base 2 representation of an integer $n$.
 
@@ -79,16 +80,17 @@
     \begin{theorem}
         $|G_n| = F(n+2)$
     \end{theorem}
-    \begin{proof}[Proof (by strong induction):]
-            \subsubsection*{Base Cases:}
+    \begin{proof}
+        The proof will be by strong induction
+            \subsubsection*{\textbf{Base Cases:}}
             \begin{itemize}
                 \item $n=1$; $G_1 =\{1x, 0x\}$; $|G_1|= 2 = F(3)$
                 \item $n=2$; $G_2 =\{1x^2 + 1x, 1x^2 + 0x, 0x^2 + 1x \}$; $|G_2|= 3 = F(4)$
             \end{itemize}
             Therefore the base cases hold.
-            \subsubsection*{Induction Hypothesis}
+            \subsubsection*{\textbf{Induction Hypothesis:}}
                 Assume that $|G_j| = F(j+2)$ for all $j \in \{1, 2, \ldots, k\}$ for some $k$.
-            \subsubsection*{Inductive Step}
+            \subsubsection*{\textbf{Inductive Step:}}
                 Let $g(x) \in G_{k+1}$. Consider the cases for $a_{k+1}$.
                 \begin{enumerate}
                     \item Case 1. $a_{k+1} = 1$. In which case the rest of the polynomial can be any polynomial in $G_k$.
@@ -164,19 +166,19 @@
     we looked at factorizations for the class of polynomials $f_n(x)$.
     One of the challenges of this is that factoring in $\B[x]$ is an NP-complete problem.
     This caused us only to be able to run the factorization algorithm for low values of $n$.
-    \begin{figure}[!h]
+    \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.8\textwidth]{factorization.jpg}
+        \includegraphics[width=0.75\textwidth]{factorization.jpg}
     \end{figure}
     \\
     We also looked at the ratio at which the number of factors increases. The ratio seemed to approach 2.32.
     More work is needed to see if this trend continues as $n$ increases.
-    \begin{figure}[!h]
+    \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.8\textwidth]{ratio.jpg}
+        \includegraphics[width=0.75\textwidth]{ratio.jpg}
     \end{figure}
 
-    \begin{table}[!h]
+    \begin{table}[h!]
             \centering
             \caption{Number of unique factorizations}
             \label{tab:data}    
@@ -200,7 +202,7 @@
 
     \end{table}
     
-    \begin{table}[!h]
+    \begin{table}[h!]
     \centering
     \caption{Unique Factorizations by number of irreducible factors}
     \label{tab:data}
@@ -250,4 +252,10 @@ Related future topics could include:
     \end{itemize}
     \item General improvements such as faster algorithms.
 \end{itemize}
+
+\pagebreak
+\bibliographystyle{apacite}
+\bibliography{ref}
+\nocite{*}
+
 \end{document}
