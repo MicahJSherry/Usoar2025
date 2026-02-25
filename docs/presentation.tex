@@ -1,0 +1,223 @@
+\documentclass{beamer}
+
+\usetheme{Madrid}
+
+\usepackage[english]{babel}
+
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bbold}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage{xcolor}
+%\usepackage{enumitem}
+\usepackage{float}
+% Common set symbols
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\nullset}{\varnothing}
+\newcommand{\powerset}[1]{\mathcal{P} ({#1})}
+\newcommand{\ol}[1]{\overline{#1}}
+
+
+\title[U-SOAR 2025 Summary]{Factorization of Polynomials\\ Over the Boolean Semifield }
+\subtitle{\small U-SOAR 2025 Summary}
+\author{
+    Micah Sherry
+}
+\setbeamertemplate{navigation symbols}{}
+\date{February 26, 2026}
+\begin{document}
+
+    \begin{frame}
+        \titlepage
+    \end{frame}
+    
+    \begin{frame}{Background}
+        The Boolean semifield, denoted as $\B$, is an algebraic structure with two operations: logical OR, analogous to addition, and
+        logical AND, analogous to multiplication. Our research explores the factorization of polynomials over the Boolean semifield, denoted as $\B[x]$.
+        
+        A key challenge in $\B[x]$ is that factorization is not unique. Specifically, we investigate the factorization of a particular
+        class of polynomials in $\B[x]$ namely: $$f_n(x) = \sum_{i=0}^{n} x^i = x^n + x^{n-1} + \cdots + x + 1$$
+        
+        Understanding the non-unique factorization of these polynomials is a central focus of our study. This research contributes to a
+        deeper understanding of algebraic structures beyond traditional fields and rings. 
+    \end{frame}
+    
+    \begin{frame}{Definitions}
+        \begin{itemize}
+            \item A semifield is an algebraic structure with addition and multiplication. That does not have additive inverses.
+            \item Let $\B = \{0, 1\}$ be the Boolean semifield equipped with logical OR as addition and Logical AND as Multiplication.  
+            \item Let $\B[x]$ be The set of all polynomials in $x$ over $\B$.
+            \item Let $f_n(x)\in \B$, be defined as $f_n(x) = x^n +x^{n-1}+\cdots + x +1$.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Related Topics}
+        \begin{enumerate}
+            \item Set Addition\\
+                $A+B = \{a+b|a \in A \text{ and } b \in B\}$ where $A,B \subseteq \N$
+            \item Dismal Arithmetic (base $b \ge 2$)
+                Let $a$ and $b$ be base-$b$ numbers with digits in $\{0,1,\dots,b-1\}$.
+                \begin{enumerate}
+                    \item $a \oplus b$ is given by digitwise $\max$ (no carries).
+                    \item $a \otimes b$ is given by digitwise $\min$, combined as in ordinary multiplication (no carries).
+                \end{enumerate} 
+            \item Numbral Arithmetic
+                let $a$ and $b$ be binary sequences.
+                \begin{enumerate}    
+                    \item $a+b$ is given by Bitwise OR.
+                    \item $a \times b$ is given by Shift-and-OR.
+                \end{enumerate}
+            \item Polynomials in $x$ over the Tropical semiring
+        \end{enumerate}
+    \end{frame}
+    
+    \begin{frame}[shrink=6]{Divisibility of $f_n(x)$}
+        \begin{lemma}
+            Lemma 3.1 from the paper 'On the Sequence A079500 and Its Combinatorial Interpretations' \cite{frosini2006sequence} 
+            states conditions for divisibility in the numbral arithmetic: For each $n, d > 0$,
+            it holds that $[d]$ is a divisor of $[2^n - 1]$ if and only if it ends with the digit 1,
+            and it does not contain any subsequence of 0s having length greater than $n-k$, with $k$
+            being the length of $[d]$.
+        \end{lemma}
+        \begin{theorem}
+            Let $g(x) \in \B[x]$ such that the constant term of $g(x)$ is 1. If $\deg(g(x)) = k$
+            and $2k-1 \leq n$, then $g(x)$ divides $f_n(x)$.
+        \end{theorem}
+        \begin{proof}
+            Let $\theta(h(x))$ be the isomorphism between $\B[x]$ and the numbral arithmetic $\theta(h(x))= [h(2)]$.
+            Assume $2k-1 \leq n$ and let $d = \theta(g(x))$ (notice $[d]$ is length $k+1$). Let $m$ be
+            the maximum length of zeros in $[d]$. Notice $m \leq k-1$. Notice $\theta(f_n(x)) = 2^{n+1}-1$.
+            By the above lemma, $d$ divides $2^{n+1}-1$ because $k-1 \leq n+1-(k+1)$, which is
+            equivalent to $2k-1 \leq n$. And by applying $\theta^{-1}$ we see $g(x)$ divides $f_n(x)$.
+        \end{proof} 
+
+    \end{frame}
+
+    \begin{frame}[shrink=5]{Factorizations Of The Form $(x+1)h(x)= f_n(x) $}
+        \small
+    \begin{theorem}
+        Let $G_n$ be the set of $g(x) \in \B[x]$ such that $g(x) = \sum_{i=1}^n a_ix^i$
+        and for all $a_i$ if $a_i = 0$ then $a_{i+1}\neq 0$.
+        Let $F(n)$ be the nth Fibonacci number.
+        $|G_n| = F(n+2)$ for $n \geq 1$ 
+    \end{theorem}
+        \begin{proof}[Proof (by Strong induction)]    
+            \noindent $G_1 = \{x, 0x\}, \quad |G_1| = 2 = F(3)$
+            \enspace \& \enspace
+            $G_2 = \{x^2+x,\; x^2,\; x\}, \quad |G_2| = 3 = F(4)$
+            
+            Therefore the base cases hold. Assume that $|G_j| = F(j+2)$ for all $j \in \{1, 2, \ldots, k\}$ for some $k$. 
+            Let $g(x) \in G_{k+1}$. Consider the possible values for $a_{k+1}$.
+                \begin{enumerate}
+                    \item Case 1. $a_{k+1} = 1$. In which case the rest of the polynomial can be any polynomial in $G_k$.
+                    \item Case 2. $a_{k+1} = 0$ which implies $a_k = 1$. In which case the rest of the polynomial can be any polynomial in $G_{k-1}$.
+                \end{enumerate}
+                So, $|G_{k+1}| = |G_k| + |G_{k-1}| = F_{k+2} + F_{k+1} = F_{k+3}$. Therefore, by the Principle of Mathematical Induction $|G_n| = F_{n+2}$.
+        \end{proof}
+    \end{frame}
+
+    \begin{frame}[shrink=15]{Factorizations Of The Form $(x+1)h(x)= f_n(x) $}
+        \small
+        \begin{theorem}
+            $(x+1)h(x) = f_n(x)$ if and only if $h(x) = x^{n-1} + g'(x)+1$ where $g'(x) \in G_{n-2}$.
+        \end{theorem}
+        \begin{proof}
+            \small
+            ($\rightarrow$): Assume that $(x+1)h(x) = f_n(x)$ and let $h(x) = \sum_{i=0}^{n-1} a_i x^i$.
+            (Notice $a_{n-1} = a_0 = 1$ otherwise it would contradict the assumption). Now assume
+            for the sake of contradiction that there exists $k < n-1$ such that $a_k = a_{k+1} = 0$.
+            Consider the following:
+            \[(x+1)h(x) = x \sum_{i=0}^{n-1} a_i x^i + \sum_{i=0}^{n-1} a_i x^i.\]
+            Notice the $k+1$ term will have coefficient $a_k + a_{k+1} = 0$,
+            contradicting the original assumption.
+
+            ($\leftarrow$): Assume $h(x) = \sum_{i=0}^{n-1} a_i x^i$ with $a_{n-1} = a_0 = 1$ and for
+            all $a_i$, if $a_i=0$ then $a_{i+1} \neq 0$. Consider the following:
+            \[(x+1)h(x) = \sum_{i=0}^{n-1} a_i x^{i+1} + \sum_{i=0}^{n-1} a_i x^i = a_{n-1}x^n + \sum_{i=1}^{n-1}(a_{i-1}+a_i)x^i + a_0 = f_n(x).\]
+            Therefore, the theorem holds.
+        \end{proof}    
+    \end{frame}
+
+    \begin{frame}{Factorizations Of The Form $(x+1)h(x)= f_n(x) $}
+        \begin{theorem}
+            There are $F(n)$ polynomials $h(x)$ such that $(x+1)h(x) = f_n(x)$.
+        \end{theorem}
+        \begin{proof}
+            Consider the following cases:
+            \begin{itemize}
+                \item $n = 1$. $h(x) = 1$ is the only valid $h(x)$ such that $(x+1)h(x) = f_1(x)$.
+                So, the theorem holds in this case.
+                \item $n = 2$. $h(x) = x+1$ is the only valid $h(x)$ such that $(x+1)h(x) = f_2(x)$.
+                So, the theorem holds in this case.
+                \item $n \geq 3$. In this case, the theorem follows directly from the two previous theorems.
+            \end{itemize}
+        \end{proof}
+    \end{frame}
+    
+    \begin{frame}{Unique factorization Examples}    
+        \begin{tabular}{|l|l|l|}
+            \hline
+            n & $f_n(x)$ & Factorizations \\
+            \hline
+            2 & $x^2 + x + 1$ & $(x + 1)^2$ \\
+            \hline
+            3 & $x^3 + x^2 + x + 1$ & $(x + 1)^3$ \\
+            & & $(x + 1)(x^2 + 1)$ \\
+            \hline
+            4 & $x^4 + x^3 + x^2 + x + 1$ & $(x + 1)^4$ \\
+            & & $(x + 1)^2(x^2 + 1)$ \\
+            & & $(x^3 + x + 1)(x + 1)$ \\
+            & & $(x + 1)(x^3 + x^2 + 1)$ \\
+            \hline
+            5 & $x^5 + x^4 + x^3 + x^2 + x + 1$ & $(x + 1)^5$ \\
+            & & $(x + 1)^3(x^2 + 1)$ \\
+            & & $(x^3 + x + 1)(x + 1)^2$ \\
+            & & $(x + 1)^2(x^3 + x^2 + 1)$ \\
+            & & $(x + 1)(x^2 + 1)^2$ \\
+            & & $(x + 1)(x^4 + x^2 + x + 1)$ \\
+            & & $(x^3 + 1)(x + 1)^2$ \\
+            & & $(x + 1)(x^4 + x^3 + x^2 + 1)$ \\
+            \hline
+        \end{tabular}
+    \end{frame}
+    
+    \begin{frame}{Growth Rate of Factors}
+        \begin{columns} 
+            \column{0.5\textwidth}     
+            \begin{figure}[h!]
+                \centering
+                \includegraphics[width=1.1\textwidth]{factorization.jpg}
+            \end{figure}
+            
+            \column{0.5\textwidth}
+            \begin{figure}[h!]
+                \centering
+                \includegraphics[width=1.1\textwidth]{ratio.jpg}
+            \end{figure}
+        \end{columns} 
+    \end{frame}
+    
+    \begin{frame}{Current Work}
+        \begin{enumerate}
+            \item Establishing $\prod_{i=1}^{n}Fibb(i)$ as a lower bound of number of unique factors.
+            \item Determining the factors of the form $(x^k+1)h(x)=f_n(x).$
+        \end{enumerate}
+    \end{frame}
+    
+
+    \begin{frame}[shrink=15]{Sources}
+        \small
+        \bibliographystyle{plain}
+        \bibliography{ref}
+        \nocite{*}
+    \end{frame}
+
+
+\end{document}
