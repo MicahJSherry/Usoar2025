@@ -30,6 +30,7 @@
 \author{
     Micah Sherry
 }
+\setbeamertemplate{bibliography item}{\insertbiblabel}
 \setbeamertemplate{navigation symbols}{}
 \date{February 26, 2026}
 \begin{document}
@@ -40,7 +41,7 @@
     
     \begin{frame}{Background}
         The Boolean semifield, denoted as $\B$, is an algebraic structure with two operations: logical OR, analogous to addition, and
-        logical AND, analogous to multiplication. Our research explores the factorization of polynomials over the Boolean semifield, denoted as $\B[x]$.
+        logical AND, analogous to multiplication. $\B$ the only finite semifield that is not a field. Our research explores the factorization of polynomials over the Boolean semifield, denoted as $\B[x]$.  
         
         A key challenge in $\B[x]$ is that factorization is not unique. Specifically, we investigate the factorization of a particular
         class of polynomials in $\B[x]$ namely: $$f_n(x) = \sum_{i=0}^{n} x^i = x^n + x^{n-1} + \cdots + x + 1$$
@@ -51,7 +52,7 @@
     
     \begin{frame}{Definitions}
         \begin{itemize}
-            \item A semifield is an algebraic structure with addition and multiplication. That does not have additive inverses.
+            \item A semifield is an algebraic structure with addition and multiplication. That does not necessarily have additive inverses.
             \item Let $\B = \{0, 1\}$ be the Boolean semifield equipped with logical OR as addition and Logical AND as Multiplication.  
             \item Let $\B[x]$ be The set of all polynomials in $x$ over $\B$.
             \item Let $f_n(x)\in \B$, be defined as $f_n(x) = x^n +x^{n-1}+\cdots + x +1$.
@@ -105,15 +106,15 @@
     \begin{theorem}
         Let $G_n$ be the set of $g(x) \in \B[x]$ such that $g(x) = \sum_{i=1}^n a_ix^i$
         and for all $a_i$ if $a_i = 0$ then $a_{i+1}\neq 0$.
-        Let $F(n)$ be the nth Fibonacci number.
-        $|G_n| = F(n+2)$ for $n \geq 1$ 
+        Let $F_n$ be the $n^{th}$ Fibonacci number.
+        $|G_n| = F_{n+2}$ for $n \geq 1$ 
     \end{theorem}
         \begin{proof}[Proof (by Strong induction)]    
-            \noindent $G_1 = \{x, 0x\}, \quad |G_1| = 2 = F(3)$
+            \noindent $G_1 = \{x, 0x\}, \quad |G_1| = 2 = F_3$
             \enspace \& \enspace
-            $G_2 = \{x^2+x,\; x^2,\; x\}, \quad |G_2| = 3 = F(4)$
+            $G_2 = \{x^2+x,\; x^2,\; x\}, \quad |G_2| = 3 = F_4$
             
-            Therefore the base cases hold. Assume that $|G_j| = F(j+2)$ for all $j \in \{1, 2, \ldots, k\}$ for some $k$. 
+            Therefore the base cases hold. Assume that $|G_j| = F_{j+2}$ for all $j \in \{1, 2, \ldots, k\}$ for some $k$. 
             Let $g(x) \in G_{k+1}$. Consider the possible values for $a_{k+1}$.
                 \begin{enumerate}
                     \item Case 1. $a_{k+1} = 1$. In which case the rest of the polynomial can be any polynomial in $G_k$.
@@ -147,7 +148,7 @@
 
     \begin{frame}{Factorizations Of The Form $(x+1)h(x)= f_n(x) $}
         \begin{theorem}
-            There are $F(n)$ polynomials $h(x)$ such that $(x+1)h(x) = f_n(x)$.
+            There are $F_n$ polynomials $h(x)$ such that $(x+1)h(x) = f_n(x)$.
         \end{theorem}
         \begin{proof}
             Consider the following cases:
@@ -161,7 +162,7 @@
         \end{proof}
     \end{frame}
     
-    \begin{frame}{Unique factorization Examples}    
+    \begin{frame}{Examples of Possible Factorization }    
         \begin{tabular}{|l|l|l|}
             \hline
             n & $f_n(x)$ & Factorizations \\
@@ -206,7 +207,7 @@
     
     \begin{frame}{Current Work}
         \begin{enumerate}
-            \item Establishing $\prod_{i=1}^{n}Fibb(i)$ as a lower bound of number of unique factors.
+            \item Establishing $\prod_{i=1}^{n}F_i$ as a lower bound of number of unique factors.
             \item Determining the factors of the form $(x^k+1)h(x)=f_n(x).$
         \end{enumerate}
     \end{frame}
@@ -214,9 +215,12 @@
 
     \begin{frame}[shrink=15]{Sources}
         \small
-        \bibliographystyle{plain}
-        \bibliography{ref}
-        \nocite{*}
+        \begin{multicols}{2}
+            \bibliographystyle{plain}
+            \bibliography{ref}
+            \nocite{*}
+        \end{multicols}
+        
     \end{frame}
 
 
