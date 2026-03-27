@@ -92,7 +92,7 @@
     %\end{frame}
 
 
-\begin{frame}{Necessary but Not Sufficient Condition for Factorization}
+\begin{frame}[shrink=7]{Necessary but Not Sufficient Condition for Factorization}
 \small
 \begin{theorem}
 Let $\displaystyle f(x)=\sum_{i=0}^{n} f_i x^i$ with $f_0=1$.
@@ -109,12 +109,11 @@ $\displaystyle g(x)=x^j+g'(x)+1,\quad h(x)=x^k+h'(x)+1$.
 \end{align*}
 Thus $j+k=n$ and $f_j=f_k=1$
 \end{proof}
+\textbf{Remarks.}
 
-\medskip
-
-\textbf{Remark.}  
 $\displaystyle f(x)=x^6+x^4+x^2+x+1$ satisfies the condition but is not factorable.
 
+$\displaystyle f(x)=x^6+x^5+x^2+1$ does not satisfy the condition and  is not factorable.
 \end{frame}
 
    
@@ -130,17 +129,17 @@ $\displaystyle f(x)=x^6+x^4+x^2+x+1$ satisfies the condition but is not factorab
             \hline
             4 & $x^4 + x^3 + x^2 + x + 1$ & $(x + 1)^4$ \\
             & & $(x + 1)^2(x^2 + 1)$ \\
-            & & $(x^3 + x + 1)(x + 1)$ \\
             & & $(x + 1)(x^3 + x^2 + 1)$ \\
+            & & $(x + 1)(x^3 + x + 1)$ \\
             \hline
             5 & $x^5 + x^4 + x^3 + x^2 + x + 1$ & $(x + 1)^5$ \\
             & & $(x + 1)^3(x^2 + 1)$ \\
-            & & $(x^3 + x + 1)(x + 1)^2$ \\
             & & $(x + 1)^2(x^3 + x^2 + 1)$ \\
-            & & $(x + 1)(x^2 + 1)^2$ \\
-            & & $(x + 1)(x^4 + x^2 + x + 1)$ \\
-            & & $(x^3 + 1)(x + 1)^2$ \\
+            & & $(x + 1)^2(x^3 + x + 1)$ \\
+            & & $(x + 1)^2(x^3 + 1)$ \\
             & & $(x + 1)(x^4 + x^3 + x^2 + 1)$ \\
+            & & $(x + 1)(x^4 + x^2 + x + 1)$ \\
+            & & $(x + 1)(x^2 + 1)^2$ \\
             \hline
         \end{tabular}
     \end{frame}
@@ -214,34 +213,35 @@ $\displaystyle f(x)=x^6+x^4+x^2+x+1$ satisfies the condition but is not factorab
     \begin{frame}[shrink=5]{Factorizations Of The Form $(x+1)h(x)= f_n(x) (Cont.)$}
 
         \begin{theorem}
-            Let $H_n = \{h(x)|(x+1) h(x) = f_n(x) \}$
-            Let $F_n$ be the $n^{th}$ Fibonacci number.
-            $|H_n| = F_{n}$ for $n \geq 1$ 
+            Let $ G_{n \, 1}= \{h(x)|(x+1) h(x) = f_n(x) \}$
+            Let $F_n$ be the $n\text{th}$ Fibonacci number.
+            $|G_{n \, 1}| = F_{n}$ for $n \geq 1$ 
         \end{theorem}
         \begin{proof}[Proof (by Strong induction)]    
-            \noindent $H_1 = \{1\}, \quad |G_1| = 1 = F_1$
+            \noindent $G_{1 \, 1} = \{1\}, \quad |G_{1 \, 1}| = 1 = F_1$
             \enspace \& \enspace
-            $H_2 = \{x+1\}, \quad |H_2| = 1 = F_2$
+            $G_{2 \, 1} = \{x+1\}, \quad |G_{2 \, 1}| = 1 = F_2$
             
-            Therefore the base cases hold. Assume that $|H_j| = F_{j}$ for all $j \in \{1, 2, \ldots, k\}$ for some $k$. 
-            Let $h(x) \in H_{k+1}$. Notice $\deg(h(x))=k$ and $h_k=1$ consider the possible values for $h_{k-1}$.
+            Therefore the base cases hold. Assume that $|G_{j\,1}| = F_{j}$ for all $j \in \{1, 2, \ldots, k\}$ for some $k$. 
+        
+            Let $h(x) \in G_{(k+1)\, 1}$. Notice $\deg(h(x))=k$ and $h_k=1$ consider the possible values for $h_{k-1}$.
                 \begin{enumerate}
-                    \item Case 1. $h_{k-1} = 1$. In which case $h(x)=x^k + h'(x)$ Where $h'(x) \in H_k$.
-                    \item Case 2. $h_{k-1} = 0$, So $h_{k-2} = 1$. In which case $h(x)=x^k + 0x^{k-1}+ h''(x)$ Where $h''(x) \in H_{k-1}$. 
+                    \item Case 1. $h_{k-1} = 1$. In which case $h(x)=x^k + h'(x)$ Where $h'(x) \in G_{k\, 1}$.
+                    \item Case 2. $h_{k-1} = 0$, So $h_{k-2} = 1$. In which case $h(x)=x^k + 0x^{k-1}+ h''(x)$ Where $h''(x) \in G_{(k-1) \, 1}$. 
                 \end{enumerate}
-                So, $|H_{k+1}| = |H_k| + |H_{k-1}| = F_{k} + F_{k-1} = F_{k+1}$.
-                Therefore, by the Principle of Mathematical Induction $|H_n| = F_{n}$ for all $n\ge1$.
+                So, $|G_{(k+1) \, 1}| = |G_{k \, 1}| + |G_{(k-1)\, 1}| = F_{k} + F_{k-1} = F_{k+1}$.
+                Therefore, by the Principle of Mathematical Induction $|G_{n\,1}| = F_{n}$ for all $n\ge1$.
         \end{proof}
     \end{frame}
 
     \begin{frame}{Factorizations Of The Form $(x^k+1)g(x)= f_n(x)$}  
         \fontsize{8pt}{2pt}\selectfont
         \begin{theorem}
-            Let $G_{nk} = \{g(x)|(x^k+1) g(x)=f_n(x)\}$,
+            Let $G_{n \, k} = \{g(x)|(x^k+1) g(x)=f_n(x)\}$,
             let $m=n-3k+1$,
             let $q = \floor{m}{k}$,
             and let $r= m\mod k$.
-            $$|G_{nk}| = (F_{q+3})^r \times (F_{q+2})^{k-r}$$
+            $$|G_{n \, k}| = (F_{q+3})^r \times (F_{q+2})^{k-r}$$
         \end{theorem}
         \begin{proof}[Sketch] 
             Consider $\displaystyle g(x) = \sum_{i=0}^{n-k}g_ix^i \in G_{nk}$.\vspace{-1em}
