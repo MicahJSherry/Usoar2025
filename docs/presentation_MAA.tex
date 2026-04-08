@@ -25,13 +25,11 @@
 \newcommand{\ol}[1]{\overline{#1}}
 \newcommand{\floor}[2]{\lfloor \frac{#1}{#2} \rfloor}
 
-\newcommand{\email}{\href{mailto:nbzx@iup.edu}{nbzx@iup.edu}}
+\newcommand{\email}{\href{mailto:MicahJSherry@gmail.com}{MicahJSherry@gmail.com}}
 \newcommand{\name}{Micah Sherry}
 
-\title[\email]{Factorization of Polynomials\\
-    Over the Boolean Semifield
-    }
-\subtitle{\small IUP Scholars Forum}
+\title[\email]{Factorization of Polynomials\\ Over the Boolean Semifield }
+\subtitle{\small MAA Student Talk}
 
 \author[\name]{
     \name \\
@@ -39,13 +37,13 @@
 }
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 \setbeamertemplate{navigation symbols}{}
-
-
-\setbeamertemplate{theorems}[numbered]
-
 %\setbeamertemplate{footline}{}
 
-\date{April 8, 2026}
+\setbeamertemplate{navigation symbols}{} % Optional: removes nav symbols
+
+
+
+\date{March 27, 2026}
 \begin{document}
 
     \begin{frame}
@@ -54,9 +52,9 @@
     
     \begin{frame}{Background}
         The Boolean semifield, denoted as $\B$, is an algebraic structure with two operations: logical OR, analogous to addition, and
-        logical AND, analogous to multiplication. $\B$ is  the only finite semifield that is not a field. Our research explores the factorization of polynomials over the Boolean semifield, denoted as $\B[x]$.  
+        logical AND, analogous to multiplication. $\B$ the only finite semifield that is not a field. Our research explores the factorization of polynomials over the Boolean semifield, denoted as $\B[x]$.  
         
-        A key challenge in $\B[x]$ is that factorization is not unique. In contrast the factorization of polynomials over fields is unique. Specifically, we investigate the factorization of a particular
+        A key challenge in $\B[x]$ is that factorization is not unique. Specifically, we investigate the factorization of a particular
         class of polynomials in $\B[x]$ namely: $$f_n(x) = \sum_{i=0}^{n} x^i = x^n + x^{n-1} + \cdots + x + 1$$
         
         Understanding the non-unique factorization of these polynomials is a central focus of our study. This research contributes to a
@@ -65,32 +63,57 @@
     
     \begin{frame}{Definitions}
         \begin{itemize}
-            \item A field is an algebraic structure Like the real numbers. Where operations like addition, multiplication, subtraction and division can be performed. 
-            \item A semifield is an algebraic structure like a field, except subtraction can not be performed. 
+            \item A semifield is an algebraic structure like a field with addition and multiplication. 
+                That does not necessarily have additive inverses and does have multiplicative inverses. 
             \item Let $\B = \{0, 1\}$ be the Boolean semifield equipped with logical OR as addition and Logical AND as Multiplication.  
-                \begin{itemize}
-                    \item So, $1 + 1 = 1.$
-                \end{itemize}
             \item Let $\B[x]$ be the set of all polynomials in $x$ over $\B$.
             \item Let $f_n(x)\in \B[x]$, be defined as $f_n(x) = x^n +x^{n-1}+\cdots + x +1$.
-            \item We say a polynomial $f(x)$ is factorable if $f(x) = g(x)h(x)$ for some $g(x), h(x) \neq f(x)$ 
         \end{itemize}
     \end{frame}
 
-\begin{frame}{Example Multiplications}
-    \begin{align*}
-        (x^2+1)(x^2+1)
-            &=x^2(x^2+1)+(x^2+1)\\
-            &=x^4+x^2+1\\
-            \\
-        (x^3+1)(x^2+1)
-            &=x^3(x^2+1)+(x^2+1)\\
-            &=x^5 +x^3 +x^2 +1\\
-            \\
-        (x^4+1)(x^3+ x +1)
-            &=x^4(x^3 + x +1)+(x^3+ x +1)\\
-            &= x^7 +x^5 +x^4 +x^3  +x +1 
-    \end{align*}
+    %\begin{frame}{Related Topics}
+    %    \begin{enumerate}
+    %        \item Set Addition\\
+    %            $A+B = \{a+b|a \in A \text{ and } b \in B\}$ where $A,B \subseteq \N$
+    %        \item Dismal Arithmetic (base $b \ge 2$)
+    %            Let $a$ and $b$ be base-$b$ numbers with digits in $\{0,1,\dots,b-1\}$.
+    %            \begin{enumerate}
+    %                \item $a \oplus b$ is given by digitwise $\max$ (no carries).
+    %                \item $a \otimes b$ is given by digitwise $\min$, combined as in ordinary multiplication (no carries).
+    %            \end{enumerate} 
+    %        \item Numbral Arithmetic
+    %            let $a$ and $b$ be binary sequences.
+    %            \begin{enumerate}    
+    %                \item $a+b$ is given by Bitwise OR.
+    %                \item $a \times b$ is given by Shift-and-OR.
+    %            \end{enumerate}
+    %        \item Polynomials in $x$ over the Tropical semiring
+    %    \end{enumerate}
+    %\end{frame}
+
+
+\begin{frame}[shrink=7]{Necessary but Not Sufficient Condition for Factorization}
+\small
+\begin{theorem}
+Let $\displaystyle f(x)=\sum_{i=0}^{n} f_i x^i$ with $f_0=1$.
+    If $f(x)$ is factorable, then there exist $j,k$ with $\displaystyle 1 \le j,k\le n-1$ and $j+k=n$ such that $f_j=f_k=1$.
+\end{theorem}
+
+\begin{proof}
+Assume $f(x)=g(x)h(x)$ with $1\le \deg(g),\deg(h)\le n-1 $. Let $\deg(g)=j$, $\deg(h)=k$. Then  
+$\displaystyle g(x)=x^j+g'(x)+1,\quad h(x)=x^k+h'(x)+1$.
+\begin{align*}
+    f(x) &=g(x)h(x)\\
+    &=(x^j+g'(x)+1)(x^k+h'(x)+1)\\
+    &= x^{j+k}+x^j+x^k + \big(x^j h'(x)+x^k g'(x)+g'(x)h'(x)+g'(x)+h'(x)\big)+1.
+\end{align*}
+Thus $j+k=n$ and $f_j=f_k=1$
+\end{proof}
+\textbf{Remarks.}
+
+$\displaystyle f(x)=x^6+x^4+x^2+x+1$ satisfies the condition but is not factorable.
+
+$\displaystyle f(x)=x^6+x^5+x^2+1$ does not satisfy the condition and  is not factorable.
 \end{frame}
 
    
@@ -135,31 +158,33 @@
             \end{figure}
     \end{frame}
     
-\begin{frame}[shrink=7]{Necessary but Not Sufficient Condition for Factorization}
-\small
-\begin{theorem}
-Let $\displaystyle f(x)=\sum_{i=0}^{n} f_i x^i$ with $f_0=1$.
-    If $f(x)$ is factorable, then there exist $j,k$ with $\displaystyle 1 \le j,k\le n-1$ and $j+k=n$ such that $f_j=f_k=1$.
-\end{theorem}
 
-\begin{proof}
-Assume $f(x)=g(x)h(x)$ with $1\le \deg(g),\deg(h)\le n-1 $. Let $\deg(g)=j$, $\deg(h)=k$. Then  
-$\displaystyle g(x)=x^j+g'(x)+1,\quad h(x)=x^k+h'(x)+1$.
-\begin{align*}
-    f(x) &=g(x)h(x)\\
-    &=(x^j+g'(x)+1)(x^k+h'(x)+1)\\
-    &= x^{j+k}+x^j+x^k + \big(x^j h'(x)+x^k g'(x)+g'(x)h'(x)+g'(x)+h'(x)\big)+1.
-\end{align*}
-Thus $j+k=n$ and $f_j=f_k=1$
-\end{proof}
-\textbf{Remarks.}
 
-$\displaystyle f(x)=x^6+x^4+x^2+x+1$ satisfies the condition but is not factorable.
 
-$\displaystyle f(x)=x^6+x^5+x^2+1$ does not satisfy the condition and  is not factorable.
-\end{frame}
+    \begin{frame}[shrink=6]{Divisibility of $f_n(x)$}
+        \begin{lemma}
+            Lemma 3.1 from the paper 'On the Sequence A079500 and Its Combinatorial Interpretations' \cite{frosini2006sequence} 
+            states conditions for divisibility in the numbral arithmetic: For each $n, d > 0$,
+            it holds that $[d]$ is a divisor of $[2^n - 1]$ if and only if it ends with the digit 1,
+            and it does not contain any subsequence of 0s having length greater than $n-k$, with $k$
+            being the length of $[d]$.
+        \end{lemma}
+        \begin{theorem}
+            Let $g(x) \in \B[x]$ such that the constant term of $g(x)$ is 1. If $\deg(g(x)) = k$
+            and $2k-1 \leq n$, then $g(x)$ divides $f_n(x)$.
+        \end{theorem}
+        \begin{proof}
+            Let $\theta(h(x))$ be the isomorphism between $\B[x]$ and the numbral arithmetic $\theta(h(x))= [h(2)]$.
+            Assume $2k-1 \leq n$ and let $d = \theta(g(x))$ (notice $[d]$ is length $k+1$). Let $m$ be
+            the maximum length of zeros in $[d]$. Notice $m \leq k-1$. Notice $\theta(f_n(x)) = 2^{n+1}-1$.
+            By the above lemma, $d$ divides $2^{n+1}-1$ because $k-1 \leq n+1-(k+1)$, which is
+            equivalent to $2k-1 \leq n$. And by applying $\theta^{-1}$ we see $g(x)$ divides $f_n(x)$.
+        \end{proof} 
 
-   \begin{frame}[shrink=15]{Factorizations Of The Form $(x+1)h(x)= f_n(x) $}
+    \end{frame}
+
+
+    \begin{frame}[shrink=15]{Factorizations Of The Form $(x+1)h(x)= f_n(x) $}
         \small
         \begin{theorem}
             $(x+1)h(x) = f_n(x)$ if and only if $ \displaystyle h(x) = \sum_{i=0}^{n-1}h_ix^i$ With $h_{n-1} = h_0 =  1$ and $h_{i}+h_{i-1} = 1$ for $0<i<n-1$. 
@@ -182,14 +207,17 @@ $\displaystyle f(x)=x^6+x^5+x^2+1$ does not satisfy the condition and  is not fa
     \end{frame}
     
     
+
+
+    
     \begin{frame}[shrink=5]{Factorizations Of The Form $(x+1)h(x)= f_n(x) (Cont.)$}
 
-        \begin{theorem}\label{thm:xp1}
+        \begin{theorem}
             Let $ G_{n \, 1}= \{h(x)|(x+1) h(x) = f_n(x) \}$
             Let $F_n$ be the $n\text{th}$ Fibonacci number.
             $|G_{n \, 1}| = F_{n}$ for $n \geq 1$ 
         \end{theorem}
-        \begin{proof}[Proof (by strong induction)]    
+        \begin{proof}[Proof (by Strong induction)]    
             \noindent $G_{1 \, 1} = \{1\}, \quad |G_{1 \, 1}| = 1 = F_1$
             \enspace \& \enspace
             $G_{2 \, 1} = \{x+1\}, \quad |G_{2 \, 1}| = 1 = F_2$
@@ -204,54 +232,6 @@ $\displaystyle f(x)=x^6+x^5+x^2+1$ does not satisfy the condition and  is not fa
                 So, $|G_{(k+1) \, 1}| = |G_{k \, 1}| + |G_{(k-1)\, 1}| = F_{k} + F_{k-1} = F_{k+1}$.
                 Therefore, by the Principle of Mathematical Induction $|G_{n\,1}| = F_{n}$ for all $n\ge1$.
         \end{proof}
-    \end{frame}
-    
-    \begin{frame}{Example $(x+1)h(x)=f_5(x)$}
-        Consider the polynomials $h(x)$ such that $(x+1)h(x) =f_5(x)$ (i.e. $G_{5\,1}$).
-        \begin{table}
-        \begin{tabular}{|l|}
-        \hline
-            $h(x)\in G_{5\,1}$  \\
-            \hline\hline
-             $x^4 +x^3+x^2+x+1$\\
-            \hline
-             $x^4 +x^3+x^2\ \phantom{+ x}+1$\\
-            \hline
-             $x^4 +x^3\ \phantom{+ x^2}+x+1$\\
-            \hline
-             $x^4\ \phantom{+ x^3} +x^2+x+1$\\
-            \hline
-             $x^4\ \phantom{+ x^3} +x^2\ \phantom{+ x} +1$\\
-            \hline
-        \end{tabular}
-        \end{table}
-        Notice there are $5 = F_5$ polynomials as expected.
-    
-    \end{frame}
-
-    \begin{frame}{Motivating example}
-        Consider the Factorizations of the form $$(x^2+1)g(x)=f_7(x)$$ 
-        the polynomials $g(x)$ are listed below.
-        \begin{table}[h]
-            \centering
-            \begin{tabular}{|l|}
-                \hline
-                $g(x)$\\
-                \hline\hline
-                $x^5 + x^4 + x^3 + x^2 + x + 1$ \\
-                \hline
-                $x^5 + x^4 + x^3 \phantom{{}+ x^2} + x + 1$ \\
-                \hline
-                $x^5 + x^4 \phantom{{}+ x^3} + x^2 + x + 1$ \\
-                \hline
-                $x^5 + x^4 \phantom{{}+ x^3} \phantom{{}+ x^2} + x + 1$ \\
-                \hline
-            \end{tabular}
-        \end{table} 
-        Is there a general formula for the number of factorizations like $(x^k+1)g(x)=f_n(x)?$
-
-
-
     \end{frame}
 
     \begin{frame}{Factorizations Of The Form $(x^k+1)g(x)= f_n(x)$}  
@@ -277,12 +257,9 @@ $\displaystyle f(x)=x^6+x^5+x^2+1$ does not satisfy the condition and  is not fa
         \end{proof}
     \end{frame}
     
-
-
-
     \begin{frame}[shrink=5]{Factorizations Of The Form $(x^k+1)g(x)= f_n(x)$ (Cont.)}
         \begin{proof}[Sketch] 
-            Construct a partition the coefficients $g_i$ where $k\le i \le n-2k$.
+            Construct a partition the coefficients $h_i$ where $k\le i \le n-2k$.
             Let $g_i \in P_j$ if $i \equiv j \mod k$.
             \begin{table}[h]
                 \centering
@@ -291,7 +268,7 @@ $\displaystyle f(x)=x^6+x^5+x^2+1$ does not satisfy the condition and  is not fa
                     $P_0$ & $g_k, \ g_{2k}, \  \cdots$  & $i \equiv 0 \mod k$ \\ \hline
                     $P_1$ & $g_{k+1}, \ g_{2k+1}, \cdots$  & $i \equiv 1 \mod k$ \\ \hline
                     \vdots & \vdots & \vdots \\ \hline
-                    $P_{k-1}$ & $g_{2k-1}, \ g_{3k-1}, \cdots$  & $i \equiv k-1 \mod k$ \\ \hline
+                    $P_0$ & $g_{2k-1}, \ g_{3k-1}, \cdots$  & $i \equiv k-1 \mod k$ \\ \hline
                 \end{tabular}
             \end{table}
             Let $m = n-3k+1$, $q= \floor{m}{k}$, and $r = m \mod k$. The length of $r$ of these partitions is $q+1$ and $k-r$ have length $q$.
@@ -300,69 +277,18 @@ $\displaystyle f(x)=x^6+x^5+x^2+1$ does not satisfy the condition and  is not fa
             \renewcommand{\qedsymbol}{$\square$}
         \end{proof}
     \end{frame}
-    
-
-    % add example slide for x^k
-    \begin{frame}{Example $n=20$ and $k=4$ }
-        if $(x^4+1)g(x)=f_{20}(x)$ then 
-        $$g(x) = \sum_{i=0}^{16}g_ix^i$$
-        with $g_{i}=1$ for $i \leq 3$ or $i \geq 13$ and $g_i+g_{i-4} = 1$ for $2 \le i \le 12$  
-       \begin{table}[h]
-                \centering
-                \begin{tabular}{|c||l|c|}
-                \hline 
-                    $P_i$ & $g_i \in P_i$ \phantom{--------}  & \# \\
-                    \hline\hline
-                    $P_0$ & $g_{4},\, g_{8},\,  g_{12}$ & 5\\\hline
-                    $P_1$ & $g_{5},\, g_{9}$         & 3\\\hline
-                    $P_2$ & $g_{6},\,  g_{10}$        & 3\\\hline
-                    $P_3$ & $g_{7},\,  g_{11}$        & 3\\\hline
-                \end{tabular}
-            \end{table}
-            Notice $m=n-2k +1 =9$, $q= \floor{m}{k} = 2$, and $r = m \mod k = 1$.
-            So, The Number of valid g(x) is $(F_{5}) \times (F_{4})^{3} = 5 \times 3^3 = 135$ 
 
 
-    \end{frame}
     
 
 
-    % add proof of lower bound 
-    \begin{frame}
-       \small
-        \begin{theorem}
-            Let $P(g(x))$ be the number of unique factorizations of $g(x)$.
-            $$F_{n+2}-n \leq P(f_n(x))$$
-        \end{theorem}
-        \begin{proof}[Proof (by induction)]
-            Consider the case when $n=1$. Notice $F_3-1 = 1$ and $f_1(x) = x+1$ only has one factorization. Thus the base case holds.
-            Assume that there exist a $k$ such that $F_{k+2}-k \leq P(f_k(x))$.
-            Consider the case for $f_{k+1}$. From Theorem~\ref{thm:xp1} it follows that, $$F_{k+1} \leq P(f_{k+1}(x)).$$
-            Notice that $(x+1)f_k(x)$ is a factorization for $f_{k+1}$ so, $$P(f_k(x))+F_{k+1} -1 \leq P(f_{k+1}(x)).$$
-            By the induction hypothesis $$F_{k+2}+F_{k+1}-(k+1) \leq P(f_k(x))+F_{k+1} -1 \leq P(f_{k+1}(x)).$$
-            Thus by the principle of mathematical induction $F_{n+2}-n \leq P(f_n(x)).$
-        \end{proof}
-
-
-    \end{frame}
-
-
-    % display graphs again
+    %\begin{frame}{Current Work}
+    %    \begin{enumerate}
+    %        \item Establishing $\prod_{i=1}^{n}F_i$ as a lower bound of number of unique factors.
+    %        \item Determining the factors of the form $(x^k+1)h(x)=f_n(x).$
+    %    \end{enumerate}
+    %\end{frame}
     
-    \begin{frame}{Exponential Growth of Factors}
-            \begin{figure}[h!]
-                \centering
-                \includegraphics[width=1\textwidth]{factorization_lb.jpg}
-            \end{figure}
-    \end{frame}
-            
-    \begin{frame}{Growth Rate of Factors}
-            \begin{figure}[h!]
-                \centering
-                \includegraphics[width=1\textwidth]{ratio_lb.jpg}
-            \end{figure}
-    \end{frame}
- 
 
     \begin{frame}[shrink=15]{Sources}
         \small
@@ -372,5 +298,26 @@ $\displaystyle f(x)=x^6+x^5+x^2+1$ does not satisfy the condition and  is not fa
             \nocite{*}
         \end{multicols}        
     \end{frame}
+    
+    \begin{frame}{Related Topics}
+        \begin{enumerate}
+            \item Set Addition\\
+                $A+B = \{a+b|a \in A \text{ and } b \in B\}$ where $A,B \subseteq \N$
+            \item Dismal Arithmetic (base $b \ge 2$)
+                Let $a$ and $b$ be base-$b$ numbers with digits in $\{0,1,\dots,b-1\}$.
+                \begin{enumerate}
+                    \item $a \oplus b$ is given by digitwise $\max$ (no carries).
+                    \item $a \otimes b$ is given by digitwise $\min$, combined as in ordinary multiplication (no carries).
+                \end{enumerate} 
+            \item Numbral Arithmetic
+                let $a$ and $b$ be binary sequences.
+                \begin{enumerate}    
+                    \item $a+b$ is given by Bitwise OR.
+                    \item $a \times b$ is given by Shift-and-OR.
+                \end{enumerate}
+            \item Polynomials in $x$ over the Tropical semiring
+        \end{enumerate}
+    \end{frame}
+
 
 \end{document}
